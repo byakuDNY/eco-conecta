@@ -1,42 +1,85 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import {
-  Leaf,
-  Recycle,
-  Users,
-  TruckIcon,
-  HandshakeIcon,
-  LeafIcon,
-} from "lucide-react";
+import { Leaf, Recycle, Users, TruckIcon, HandshakeIcon } from "lucide-react";
 import Link from "next/link";
 
-export default function Home() {
-  const steps = [
-    {
-      title: "Registra tus Materiales",
-      description:
-        "Lista los materiales reciclables que tienes disponibles para intercambiar.",
-      icon: Recycle,
-    },
-    {
-      title: "Conecta",
-      description:
-        "Encuentra personas u organizaciones interesadas en tus materiales.",
-      icon: HandshakeIcon,
-    },
-    {
-      title: "Coordina",
-      description: "Organiza la entrega o recogida de los materiales.",
-      icon: TruckIcon,
-    },
-    {
-      title: "Contribuye",
-      description:
-        "Ayuda al medio ambiente y forma parte de la economía circular.",
-      icon: LeafIcon,
-    },
-  ];
+const steps = [
+  {
+    title: "Registra tus Materiales",
+    description:
+      "Lista los materiales reciclables que tienes disponibles para intercambiar.",
+    icon: Recycle,
+  },
+  {
+    title: "Conecta",
+    description:
+      "Encuentra personas u organizaciones interesadas en tus materiales.",
+    icon: HandshakeIcon,
+  },
+  {
+    title: "Coordina",
+    description: "Organiza la entrega o recogida de los materiales.",
+    icon: TruckIcon,
+  },
+  {
+    title: "Contribuye",
+    description:
+      "Ayuda al medio ambiente y forma parte de la economía circular.",
+    icon: Leaf,
+  },
+];
 
+const featureData = [
+  {
+    icon: Recycle,
+    title: "Intercambio Fácil",
+    description:
+      "Publica y encuentra materiales reciclables de forma sencilla. Conecta directamente con otros usuarios interesados.",
+  },
+  {
+    icon: Users,
+    title: "Comunidad Activa",
+    description:
+      "Únete a una red creciente de ciudadanos y empresas comprometidos con la sostenibilidad en Panamá.",
+  },
+  {
+    icon: Leaf,
+    title: "Impacto Ambiental",
+    description:
+      "Contribuye a la economía circular y reduce el impacto ambiental dando nueva vida a los materiales.",
+  },
+];
+
+const stats = [
+  {
+    value: "1,000+",
+    label: "Usuarios Activos",
+  },
+  {
+    value: "50,000 kg",
+    label: "Materiales Reciclados",
+  },
+  {
+    value: "15+",
+    label: "Ciudades",
+  },
+  {
+    value: "98%",
+    label: "Satisfacción",
+  },
+];
+
+const FeatureCard = ({ icon: Icon, title, description }) => (
+  <Card className="p-6">
+    <div className="mb-4">
+      <Icon className="w-12 h-12 text-green-600" />
+    </div>
+    <h3 className="text-xl font-semibold mb-2">{title}</h3>
+    <p className="text-muted-foreground">{description}</p>
+  </Card>
+);
+
+export default function Home() {
   return (
     <div className="container mx-auto px-4 py-12">
       {/* Hero Section */}
@@ -61,40 +104,17 @@ export default function Home() {
 
       {/* Features Section */}
       <section className="grid md:grid-cols-3 gap-8 mb-16">
-        <Card className="p-6">
-          <div className="mb-4">
-            <Recycle className="w-12 h-12 text-green-600" />
-          </div>
-          <h3 className="text-xl font-semibold mb-2">Intercambio Fácil</h3>
-          <p className="text-muted-foreground">
-            Publica y encuentra materiales reciclables de forma sencilla.
-            Conecta directamente con otros usuarios interesados.
-          </p>
-        </Card>
-
-        <Card className="p-6">
-          <div className="mb-4">
-            <Users className="w-12 h-12 text-green-600" />
-          </div>
-          <h3 className="text-xl font-semibold mb-2">Comunidad Activa</h3>
-          <p className="text-muted-foreground">
-            Únete a una red creciente de ciudadanos y empresas comprometidos con
-            la sostenibilidad en Panamá.
-          </p>
-        </Card>
-
-        <Card className="p-6">
-          <div className="mb-4">
-            <Leaf className="w-12 h-12 text-green-600" />
-          </div>
-          <h3 className="text-xl font-semibold mb-2">Impacto Ambiental</h3>
-          <p className="text-muted-foreground">
-            Contribuye a la economía circular y reduce el impacto ambiental
-            dando nueva vida a los materiales.
-          </p>
-        </Card>
+        {featureData.map((feature, index) => (
+          <FeatureCard
+            key={index}
+            icon={feature.icon}
+            title={feature.title}
+            description={feature.description}
+          />
+        ))}
       </section>
 
+      {/* How It Works Section */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -107,18 +127,15 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mt-16">
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-              {steps.map((step, index) => (
-                <Card key={index} className="p-6">
-                  <div className="mb-4">
-                    <step.icon className="w-12 h-12 text-green-600" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-                  <p className="text-muted-foreground">{step.description}</p>
-                </Card>
-              ))}
-            </div>
+          <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+            {steps.map((step, index) => (
+              <FeatureCard
+                key={index}
+                icon={step.icon}
+                title={step.title}
+                description={step.description}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -126,19 +143,13 @@ export default function Home() {
       {/* Stats Section */}
       <section className="bg-muted rounded-lg p-8 text-center">
         <h2 className="text-2xl font-bold mb-8">Nuestro Impacto</h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          <div>
-            <p className="text-4xl font-bold text-green-600">1,234</p>
-            <p className="text-muted-foreground">Materiales Intercambiados</p>
-          </div>
-          <div>
-            <p className="text-4xl font-bold text-green-600">567</p>
-            <p className="text-muted-foreground">Usuarios Activos</p>
-          </div>
-          <div>
-            <p className="text-4xl font-bold text-green-600">89</p>
-            <p className="text-muted-foreground">Empresas Participantes</p>
-          </div>
+        <div className="grid md:grid-cols-4 gap-8">
+          {stats.map((stat, index) => (
+            <div key={index}>
+              <p className="text-4xl font-bold text-green-600">{stat.value}</p>
+              <p className="text-muted-foreground">{stat.label}</p>
+            </div>
+          ))}
         </div>
       </section>
     </div>
