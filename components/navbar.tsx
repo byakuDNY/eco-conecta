@@ -17,6 +17,11 @@ export function Navbar() {
       active: pathname === "/",
     },
     {
+      href: "/about",
+      label: "Sobre Nosotros",
+      active: pathname === "/about",
+    },
+    {
       href: "/materiales",
       label: "Materiales",
       active: pathname === "/materiales",

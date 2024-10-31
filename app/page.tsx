@@ -95,13 +95,13 @@ export default function Home() {
         </Card>
       </section>
 
-      <section id="how-it-works" className="py-16">
+      <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+            <h2 className="text-3xl font-extrabold sm:text-4xl">
               ¿Cómo Funciona?
             </h2>
-            <p className="mt-4 text-lg text-gray-600">
+            <p className="mt-4 text-lg">
               Cuatro simples pasos para comenzar a intercambiar materiales
               reciclables
             </p>
@@ -110,18 +110,13 @@ export default function Home() {
           <div className="mt-16">
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
               {steps.map((step, index) => (
-                <div
-                  key={index}
-                  className="relative bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
-                >
-                  <div className="flex items-center justify-center w-12 h-12 bg-green-100 rounded-md mb-4">
-                    <step.icon className="h-6 w-6 text-green-600" />
+                <Card key={index} className="p-6">
+                  <div className="mb-4">
+                    <step.icon className="w-12 h-12 text-green-600" />
                   </div>
-                  <h3 className="text-xl font-medium text-gray-900">
-                    {step.title}
-                  </h3>
-                  <p className="mt-2 text-gray-600">{step.description}</p>
-                </div>
+                  <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+                  <p className="text-muted-foreground">{step.description}</p>
+                </Card>
               ))}
             </div>
           </div>
