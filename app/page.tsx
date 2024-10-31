@@ -1,15 +1,49 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Leaf, Recycle, Users } from "lucide-react";
+import {
+  Leaf,
+  Recycle,
+  Users,
+  TruckIcon,
+  HandshakeIcon,
+  LeafIcon,
+} from "lucide-react";
 import Link from "next/link";
 
 export default function Home() {
+  const steps = [
+    {
+      title: "Registra tus Materiales",
+      description:
+        "Lista los materiales reciclables que tienes disponibles para intercambiar.",
+      icon: Recycle,
+    },
+    {
+      title: "Conecta",
+      description:
+        "Encuentra personas u organizaciones interesadas en tus materiales.",
+      icon: HandshakeIcon,
+    },
+    {
+      title: "Coordina",
+      description: "Organiza la entrega o recogida de los materiales.",
+      icon: TruckIcon,
+    },
+    {
+      title: "Contribuye",
+      description:
+        "Ayuda al medio ambiente y forma parte de la economía circular.",
+      icon: LeafIcon,
+    },
+  ];
+
   return (
     <div className="container mx-auto px-4 py-12">
       {/* Hero Section */}
       <section className="text-center mb-16">
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
-          EcoConecta Panamá
+        <h1 className="text-4xl md:text-6xl font-bold mb-6">
+          <span className="block">Intercambia y Reutiliza</span>
+          <span className="block text-green-600">Materiales Reciclables</span>
         </h1>
         <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
           Conectamos personas y empresas para dar nueva vida a los materiales
@@ -59,6 +93,39 @@ export default function Home() {
             dando nueva vida a los materiales.
           </p>
         </Card>
+      </section>
+
+      <section id="how-it-works" className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+              ¿Cómo Funciona?
+            </h2>
+            <p className="mt-4 text-lg text-gray-600">
+              Cuatro simples pasos para comenzar a intercambiar materiales
+              reciclables
+            </p>
+          </div>
+
+          <div className="mt-16">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+              {steps.map((step, index) => (
+                <div
+                  key={index}
+                  className="relative bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+                >
+                  <div className="flex items-center justify-center w-12 h-12 bg-green-100 rounded-md mb-4">
+                    <step.icon className="h-6 w-6 text-green-600" />
+                  </div>
+                  <h3 className="text-xl font-medium text-gray-900">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2 text-gray-600">{step.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Stats Section */}
